@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="موقع فضيلة الشيخ محمد أبو بريكة - محفظ ومعلم القرآن الكريم. تعلم القرآن الكريم وأحكام التجويد على يد شيخ متخصص." />
+  <meta name="keywords" content="تحفيظ القرآن, تعليم القرآن, تجويد, شيخ محمد أبو بريكة, حلقات قرآنية" />
+  <meta name="author" content="الشيخ محمد أبو بريكة" />
+  <title>فضيلة الشيخ محمد أبو بريكة | معلم القرآن الكريم</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Amiri+Quran&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       INTRO SCREEN
+  ============================================================ -->
+  <div id="intro-screen" class="intro-screen" aria-label="شاشة الترحيب">
+
+    <!-- Particle Canvas -->
+    <canvas id="intro-particles" class="intro-particles" aria-hidden="true"></canvas>
+
+    <!-- Background Islamic Pattern -->
+    <div class="intro-bg-pattern" aria-hidden="true"></div>
+
+    <!-- Light Rays -->
+    <div class="intro-rays" aria-hidden="true">
+      <div class="ray ray-1"></div>
+      <div class="ray ray-2"></div>
+      <div class="ray ray-3"></div>
+      <div class="ray ray-4"></div>
+    </div>
+
+    <!-- Mushaf Book Opening Effect -->
+    <div class="mushaf-container" id="mushaf-container" aria-hidden="true">
+      <div class="mushaf-page mushaf-left"></div>
+      <div class="mushaf-spine"></div>
+      <div class="mushaf-page mushaf-right"></div>
+    </div>
+
+    <!-- Intro Content -->
+    <div class="intro-content" id="intro-content">
+      <!-- Ornament Top -->
+      <div class="intro-ornament intro-ornament-top" aria-hidden="true">
+        <svg viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M150,5 L160,20 L180,20 L165,32 L170,50 L150,38 L130,50 L135,32 L120,20 L140,20 Z" fill="#D9B24C"
+            opacity="0.9" />
+          <line x1="0" y1="30" x2="115" y2="30" stroke="#D9B24C" stroke-width="1" opacity="0.5" />
+          <line x1="185" y1="30" x2="300" y2="30" stroke="#D9B24C" stroke-width="1" opacity="0.5" />
+          <circle cx="110" cy="30" r="3" fill="#D9B24C" opacity="0.7" />
+          <circle cx="190" cy="30" r="3" fill="#D9B24C" opacity="0.7" />
+          <circle cx="95" cy="30" r="2" fill="#D9B24C" opacity="0.5" />
+          <circle cx="205" cy="30" r="2" fill="#D9B24C" opacity="0.5" />
+        </svg>
+      </div>
+
+      <!-- Bismillah -->
+      <p class="intro-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+
+      <!-- Quran Verse -->
+      <div class="intro-verse-wrapper">
+        <p class="intro-verse" id="intro-verse">
+          ﴿ إِنَّ هَٰذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ وَيُبَشِّرُ الْمُؤْمِنِينَ الَّذِينَ يَعْمَلُونَ
+          الصَّالِحَاتِ أَنَّ لَهُمْ أَجْرًا كَبِيرًا ﴾
+        </p>
+        <p class="intro-verse-ref">سورة الإسراء — الآية ٩</p>
+      </div>
+
+      <!-- Ornament Bottom -->
+      <div class="intro-ornament intro-ornament-bottom" aria-hidden="true">
+        <svg viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M150,55 L160,40 L180,40 L165,28 L170,10 L150,22 L130,10 L135,28 L120,40 L140,40 Z" fill="#D9B24C"
+            opacity="0.9" />
+          <line x1="0" y1="30" x2="115" y2="30" stroke="#D9B24C" stroke-width="1" opacity="0.5" />
+          <line x1="185" y1="30" x2="300" y2="30" stroke="#D9B24C" stroke-width="1" opacity="0.5" />
+          <circle cx="110" cy="30" r="3" fill="#D9B24C" opacity="0.7" />
+          <circle cx="190" cy="30" r="3" fill="#D9B24C" opacity="0.7" />
+        </svg>
+      </div>
+
+      <!-- Audio Controls -->
+      <div class="intro-audio-controls" id="audio-controls">
+        <button id="audio-toggle-btn" class="audio-btn" aria-label="تشغيل/إيقاف الصوت" title="تشغيل/إيقاف التلاوة">
+          <svg id="audio-icon-on" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#D9B24C" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14" stroke="#D9B24C" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <svg id="audio-icon-off" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style="display:none">
+            <path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#D9B24C" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <line x1="23" y1="9" x2="17" y2="15" stroke="#D9B24C" stroke-width="2" stroke-linecap="round" />
+            <line x1="17" y1="9" x2="23" y2="15" stroke="#D9B24C" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+        <span class="audio-label">تلاوة القرآن الكريم</span>
+      </div>
+
+      <!-- Skip Button -->
+      <button id="skip-intro-btn" class="skip-btn" aria-label="تخطي المقدمة">
+        تخطي ←
+      </button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="intro-progress" aria-hidden="true">
+      <div class="intro-progress-bar" id="intro-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN WEBSITE
+  ============================================================ -->
+  <div id="main-site" class="main-site" style="opacity:0; visibility:hidden;">
+
+    <!-- Hidden audio element -->
+    <audio id="intro-audio" preload="auto" loop>
+      <!-- Place your Quran recitation audio file in assets/audio/recitation.mp3 -->
+      <source src="assets/audio/المنشاوي.mpeg" type="audio/mpeg" />
+    </audio>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <header id="navbar" class="navbar" role="banner">
+      <div class="nav-container">
+        <!-- Logo -->
+        <a href="#hero" class="nav-logo" aria-label="الصفحة الرئيسية">
+          <div class="nav-logo-icon" aria-hidden="true">
+            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="25,3 30,17 45,17 33,26 38,40 25,31 12,40 17,26 5,17 20,17" fill="#D9B24C" />
+            </svg>
+          </div>
+          <div class="nav-logo-text">
+            <span class="nav-logo-title">الشيخ محمد</span>
+            <span class="nav-logo-sub">أبو بريكة</span>
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="nav-links" role="navigation" aria-label="القائمة الرئيسية">
+          <ul id="nav-menu" class="nav-menu">
+            <li><a href="#hero" class="nav-link active" data-section="hero">الرئيسية</a></li>
+            <li><a href="#about" class="nav-link" data-section="about">نبذة عن الشيخ</a></li>
+            <li><a href="#services" class="nav-link" data-section="services">الخدمات</a></li>
+            <li><a href="#qualifications" class="nav-link" data-section="qualifications">المؤهلات</a></li>
+            <li><a href="#testimonials" class="nav-link" data-section="testimonials">آراء الطلاب</a></li>
+            <li><a href="#contact" class="nav-link" data-section="contact">التواصل</a></li>
+          </ul>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="nav-toggle" id="nav-toggle" aria-label="فتح القائمة" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Drawer -->
+      <div class="nav-drawer" id="nav-drawer" role="dialog" aria-label="القائمة المتنقلة">
+        <ul class="nav-drawer-menu">
+          <li><a href="#hero" class="nav-drawer-link">الرئيسية</a></li>
+          <li><a href="#about" class="nav-drawer-link">نبذة عن الشيخ</a></li>
+          <li><a href="#services" class="nav-drawer-link">الخدمات</a></li>
+          <li><a href="#qualifications" class="nav-drawer-link">المؤهلات</a></li>
+          <li><a href="#testimonials" class="nav-drawer-link">آراء الطلاب</a></li>
+          <li><a href="#contact" class="nav-drawer-link">التواصل</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-title">
+
+      <!-- Particle Canvas -->
+      <canvas id="hero-particles" class="hero-particles" aria-hidden="true"></canvas>
+
+      <!-- Background Pattern -->
+      <div class="hero-pattern" aria-hidden="true"></div>
+
+      <!-- Decorative Floating Elements -->
+      <div class="floating-ornaments" aria-hidden="true">
+        <div class="float-orb float-orb-1"></div>
+        <div class="float-orb float-orb-2"></div>
+        <div class="float-orb float-orb-3"></div>
+        <div class="float-gem float-gem-1">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="30,5 35,22 52,22 38,33 43,50 30,39 17,50 22,33 8,22 25,22" fill="#D9B24C" opacity="0.4" />
+          </svg>
+        </div>
+        <div class="float-gem float-gem-2">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="30,5 35,22 52,22 38,33 43,50 30,39 17,50 22,33 8,22 25,22" fill="#D9B24C" opacity="0.3" />
+          </svg>
+        </div>
+        <div class="float-gem float-gem-3">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="30,5 35,22 52,22 38,33 43,50 30,39 17,50 22,33 8,22 25,22" fill="#E9C86B" opacity="0.25" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="hero-content" role="main">
+
+        <!-- Hadith Quote -->
+        <div class="hero-hadith" data-aos="fade-down">
+          <div class="hadith-ornament-line" aria-hidden="true"></div>
+          <p class="hadith-label">قَالَ ﷺ :</p>
+          <blockquote class="hadith-text">
+            «خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ»
+          </blockquote>
+          <div class="hadith-ornament-line" aria-hidden="true"></div>
+        </div>
+
+        <!-- Name & Title -->
+        <div class="hero-name-block" data-aos="fade-up">
+          <p class="hero-pre-title">فضيلة الشيخ</p>
+          <h1 id="hero-title" class="hero-name">محمد أبو بريكة</h1>
+          <p class="hero-subtitle">مُحفظ ومعلم القرآن الكريم</p>
+          <!-- Gold Divider -->
+          <div class="hero-divider" aria-hidden="true">
+            <span class="divider-line"></span>
+            <span class="divider-gem">
+              <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="10,1 12,7 18,7 13,11 15,17 10,13 5,17 7,11 2,7 8,7" fill="#D9B24C" />
+              </svg>
+            </span>
+            <span class="divider-line"></span>
+          </div>
+          <p class="hero-motto">"لِيَكُــنْ شِعَــارُكَ لا أَبرَحُ حَتّى أَبلُغَ"</p>
+        </div>
+
+        <!-- Hero Buttons -->
+        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
+          <a href="#contact" id="btn-contact" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 1.27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.91a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0121.73 16z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            تواصل الآن
+          </a>
+          <a href="https://wa.me/201027347928" id="btn-whatsapp" class="btn btn-whatsapp" target="_blank"
+            rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                fill="currentColor" />
+            </svg>
+            واتساب مباشر
+          </a>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" aria-hidden="true">
+          <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+          </div>
+          <p class="scroll-text">اكتشف المزيد</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== STATS SECTION ==================== -->
+    <section id="stats" class="stats-section" aria-label="إحصاءات">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#D9B24C" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="9" cy="7" r="4" stroke="#D9B24C" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#D9B24C" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="stat-number" data-target="500" data-suffix="+">0</div>
+            <div class="stat-label">طالب متميز</div>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                  stroke="#D9B24C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="stat-number" data-target="150" data-suffix="+">0</div>
+            <div class="stat-label">حافظ للقرآن</div>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="#D9B24C" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="#D9B24C" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="stat-number" data-target="300" data-suffix="+">0</div>
+            <div class="stat-label">ختمة قرآنية</div>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#D9B24C" stroke-width="2" />
+                <polyline points="12 6 12 12 16 14" stroke="#D9B24C" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="stat-number" data-target="15" data-suffix="+">0</div>
+            <div class="stat-label">سنوات الخبرة</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section id="about" class="about-section section" aria-labelledby="about-title">
+      <div class="container">
+
+        <!-- Section Header -->
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-ornament" aria-hidden="true">
+            <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0" y1="20" x2="75" y2="20" stroke="#D9B24C" stroke-width="1" opacity="0.6" />
+              <polygon points="100,5 107,16 120,16 110,23 113,35 100,28 87,35 90,23 80,16 93,16" fill="#D9B24C" />
+              <line x1="125" y1="20" x2="200" y2="20" stroke="#D9B24C" stroke-width="1" opacity="0.6" />
+            </svg>
+          </div>
+          <h2 id="about-title" class="section-title">نبذة عن الشيخ</h2>
+          <p class="section-subtitle">تعرف على فضيلة الشيخ محمد أبو بريكة</p>
+        </div>
+
+        <!-- About Content -->
+        <div class="about-grid">
+
+          <!-- Image / Avatar -->
+          <div class="about-image-col" data-aos="fade-right">
+            
+            <div class="about-image-card">
+              <div class="about-avatar-wrapper">
+              
+                <!-- <div class="about-avatar-bg" aria-hidden="true"></div> -->
+                <div class="about-avatar" aria-hidden="true">
+                  <img src="/assets/images/شيخ محمد 2.png" alt="">
+                  <!-- <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="60" cy="45" r="28" fill="#D9B24C" opacity="0.2" />
+                    <circle cx="60" cy="45" r="22" fill="#D9B24C" opacity="0.15" /> -->
+                    <!-- <text x="60" y="55" text-anchor="middle" font-family="Cairo" font-size="36" fill="#D9B24C">م</text> -->
+                    <!-- <img src="/assets/images/شيخ محمد 2.png" alt=""> -->
+                    <ellipse cx="60" cy="95" rx="35" ry="18" fill="#D9B24C" opacity="0.1" />
+                  <!-- </svg> -->
+                </div>
+              </div>
+              <!-- Quick Info -->
+              <div class="about-quick-info">
+                <div class="quick-info-item">
+                  <span class="qi-icon" aria-hidden="true">📍</span>
+                  <span class="qi-text">مصر</span>
+                </div>
+                <div class="quick-info-item">
+                  <span class="qi-icon" aria-hidden="true">📞</span>
+                  <span class="qi-text" dir="ltr">01027347928</span>
+                </div>
+                <div class="quick-info-item">
+                  <span class="qi-icon" aria-hidden="true">🎓</span>
+                  <span class="qi-text">إجازة قرآنية بسند متصل</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text Content -->
+          <div class="about-text-col" data-aos="fade-left">
+            <div class="about-text-card glass-card">
+              <h3 class="about-name-heading">فضيلة الشيخ محمد أبو بريكة</h3>
+              <p class="about-description">
+                بسم الله الرحمن الرحيم، فضيلة الشيخ محمد أبو بريكة معلم ومحفظ للقرآن الكريم، يحمل إجازات قرآنية بالسند
+                المتصل إلى رسول الله ﷺ. يتمتع بخبرة واسعة في تعليم القرآن الكريم وأحكام التجويد لمختلف الأعمار.
+              </p>
+              <p class="about-description">
+                يؤمن الشيخ بأن تعليم القرآن الكريم رسالة سامية وأمانة عظيمة، لذا يبذل قصارى جهده في تقديم تعليم متميز
+                يجمع بين الأصالة والحداثة، مع الاهتمام بكل طالب على حدة.
+              </p>
+
+              <!-- Features Grid -->
+              <div class="about-features">
+                <div class="about-feature-item">
+                  <div class="feature-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="#D9B24C" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                      <polyline points="22 4 12 14.01 9 11.01" stroke="#D9B24C" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <span>سند قرآني متصل</span>
+                </div>
+                <div class="about-feature-item">
+                  <div class="feature-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="#D9B24C" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                      <polyline points="22 4 12 14.01 9 11.01" stroke="#D9B24C" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <span>خبرة تزيد عن ١٥ عامًا</span>
+                </div>
+                <div class="about-feature-item">
+                  <div class="feature-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="#D9B24C" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                      <polyline points="22 4 12 14.01 9 11.01" stroke="#D9B24C" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <span>متخصص في التجويد</span>
+                </div>
+                <div class="about-feature-item">
+                  <div class="feature-icon-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="#D9B24C" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                      <polyline points="22 4 12 14.01 9 11.01" stroke="#D9B24C" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <span>تعليم جميع الأعمار</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SERVICES SECTION ==================== -->
+    <section id="services" class="services-section section" aria-labelledby="services-title">
+      <div class="container">
+
+        <!-- Section Header -->
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-ornament" aria-hidden="true">
+            <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0" y1="20" x2="75" y2="20" stroke="#D9B24C" stroke-width="1" opacity="0.6" />
+              <polygon points="100,5 107,16 120,16 110,23 113,35 100,28 87,35 90,23 80,16 93,16" fill="#D9B24C" />
+              <line x1="125" y1="20" x2="200" y2="20" stroke="#D9B24C" stroke-width="1" opacity="0.6" />
+            </svg>
+          </div>
+          <h2 id="services-title" class="section-title">خدماتنا</h2>
+          <p class="section-subtitle">نقدم لك تجربة تعليمية قرآنية متكاملة ومتميزة</p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-grid">
+
+          <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <div class="service-icon-bg"></div>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="#D9B24C" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="#D9B24C" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3 class="service-title">تحفيظ القرآن الكريم</h3>
+            <p class="service-desc">برنامج متكامل لحفظ القرآن الكريم بأساليب تربوية حديثة تناسب جميع المستويات</p>
+            <div class="service-badge">الأكثر طلبًا</div>
+          </div>
+
+          <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <div class="service-icon-bg"></div>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" stroke="#D9B24C" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" stroke="#D9B24C" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3 class="service-title">تصحيح التلاوة</h3>
+            <p class="service-desc">تصحيح مخارج الحروف وضبط التلاوة وفق قواعد علم التجويد الصحيح</p>
+          </div>
+
+          <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <div class="service-icon-bg"></div>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  stroke="#D9B24C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3 class="service-title">تعليم التجويد</h3>
+            <p class="service-desc">دروس منهجية في علم التجويد من الأحكام الأساسية حتى الإتقان التام</p>
+          </div>
+
+          <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <div class="service-icon-bg"></div>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#D9B24C" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="9" cy="7" r="4" stroke="#D9B24C" stroke-width="2" />
+                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#D9B24C" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3 class="service-title">حلقات الأطفال</h3>
+            <p class="service-desc">بيئة تعليمية ممتعة ومحببة للأطفال لتعلم القرآن الكريم بأسلوب مشوق</p>
+          </div>
+
+          <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <div class="service-icon-bg"></div>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="#D9B24C" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="12" cy="7" r="4" stroke="#D9B24C" stroke-width="2" />
+              </svg>
+            </div>
+            <h3 class="service-title">حلقات الكبار</h3>
+            <p class="service-desc">برامج مخصصة للبالغين تراعي ظروف العمل والالتزامات اليومية</p>
+          </div>
+
+          <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-icon-wrap" aria-hidden="true">
+              <div class="service-icon-bg"></div>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="#D9B24C" stroke-width="2" />
+                <line x1="8" y1="21" x2="16" y2="21" stroke="#D9B24C" stroke-width="2" stroke-linecap="round" />
+                <line x1="12" y1="17" x2="12" y2="21" stroke="#D9B24C" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3 class="service-title">التعليم عن بُعد</h3>
+            <p class="service-desc">حلقات تفاعلية عبر الإنترنت لمن لا يستطيع الحضور المباشر من أي مكان في العالم</p>
+            <div class="service-badge service-badge-new">جديد</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== QUALIFICATIONS SECTION ==================== -->
+
+
+    <section id="qualifications" class="qualifications-section section" aria-labelledby="qual-title">
+      <div class="container">
+
+        <!-- Section Header -->
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-ornament" aria-hidden="true">
+            <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0" y1="20" x2="75" y2="20" stroke="#D9B24C" stroke-width="1" opacity="0.6" />
+              <polygon points="100,5 107,16 120,16 110,23 113,35 100,28 87,35 90,23 80,16 93,16" fill="#D9B24C" />
+              <line x1="125" y1="20" x2="200" y2="20" stroke="#D9B24C" stroke-width="1" opacity="0.6" />
+            </svg>
+          </div>
+          <h2 id="qual-title" class="section-title">المؤهلات والإجازات</h2>
+          <p class="section-subtitle">مسيرة علمية متميزة في خدمة القرآن الكريم</p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline" role="list">
+
+          <div class="timeline-item" data-aos="fade-right" role="listitem">
+            <div class="timeline-marker" aria-hidden="true">
+              <div class="timeline-dot"></div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-year">إجازة</div>
+              <h3 class="timeline-title">إجازة برواية حفص عن عاصم</h3>
+              <p class="timeline-desc">إجازة بالسند المتصل برواية حفص عن عاصم من طريق الشاطبية</p>
+              <div class="timeline-tag">سند متصل بالنبي ﷺ</div>
+            </div>
+          </div>
+
+          <div class="timeline-item" data-aos="fade-left" role="listitem">
+            <div class="timeline-marker" aria-hidden="true">
+              <div class="timeline-dot"></div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-year">تخصص</div>
+              <h3 class="timeline-title">التخصص في علوم القرآن والتجويد</h3>
+              <p class="timeline-desc">دراسة متخصصة في أحكام التجويد ومخارج الحروف والصفات</p>
+              <div class="timeline-tag">تجويد متقدم</div>
+            </div>
+          </div>
+
+          <div class="timeline-item" data-aos="fade-right" role="listitem">
+            <div class="timeline-marker" aria-hidden="true">
+              <div class="timeline-dot"></div>
+              <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-year">خبرة</div>
+              <h3 class="timeline-title">خبرة ميدانية في التعليم القرآني</h3>
+              <p class="timeline-desc">أكثر من ١٥ عامًا في تحفيظ وتعليم القرآن الكريم لمختلف الأعمار والمستويات</p>
+              <div class="timeline-tag">+١٥ سنة</div>
+            </div>
+          </div>
+
+          <div class="timeline-item" data-aos="fade-left" role="listitem">
+            <div class="timeline-marker" aria-hidden="true">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-year">حاليًا</div>
+              <h3 class="timeline-title">مواصلة مسيرة العطاء</h3>
+              <p class="timeline-desc">استمرار في التدريس والتحفيظ خدمةً لكتاب الله تعالى</p>
+              <div class="timeline-tag timeline-tag-active">مستمر في العطاء</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS SECTION ==================== -->
+    <section id="testimonials" class="testimonials-section section" aria-labelledby="test-title">
+      <div class="container">
+
+        <!-- Section Header -->
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-ornament" aria-hidden="true">
+            <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0" y1="20" x2="75" y2="20" stroke="#D9B24C" stroke-width="1" opacity="0.6" />
+              <polygon points="100,5 107,16 120,16 110,23 113,35 100,28 87,35 90,23 80,16 93,16" fill="#D9B24C" />
+              <line x1="125" y1="20" x2="200" y2="20" stroke="#D9B24C" stroke-width="1" opacity="0.6" />
+            </svg>
+          </div>
+          <h2 id="test-title" class="section-title">آراء الطلاب</h2>
+          <p class="section-subtitle">ما يقوله طلابنا عن تجربتهم مع الشيخ</p>
+        </div>
+
+        <!-- Testimonials Slider -->
+        <div class="testimonials-slider" id="testimonials-slider" aria-live="polite">
+          <div class="testimonials-track" id="testimonials-track">
+
+            <div class="testimonial-slide" role="article">
+              <div class="testimonial-card glass-card">
+                <div class="testimonial-quote-icon" aria-hidden="true">❝</div>
+                <p class="testimonial-text">الحمد لله رب العالمين ، تعلمت على يد الشيخ محمد وأتممت حفظ القرآن كاملاً.
+                  أسلوبه في التعليم رائع ومميز، يبدأ من الصفر حتى الإتقان. جزاه الله خيراً.</p>
+                <div class="testimonial-author">
+                  <div class="author-avatar" aria-hidden="true">أ</div>
+                  <div class="author-info">
+                    <p class="author-name">أحمد محمود</p>
+                    <p class="author-role">طالب حفظ القرآن</p>
+                  </div>
+                  <div class="testimonial-stars" aria-label="تقييم ٥ نجوم" aria-hidden="true">★★★★★</div>
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="testimonial-slide" role="article">
+              <div class="testimonial-card glass-card">
+                <div class="testimonial-quote-icon" aria-hidden="true">❝</div>
+                <p class="testimonial-text">ابنتي كانت تخاف من القرآن لأنها لا تعرف كيف تقرأ. بعد ثلاثة أشهر مع الشيخ،
+                  أصبحت تقرأ بتجويد وتحب القرآن كثيراً. شكراً جزيلاً يا شيخنا الفاضل.</p>
+                <div class="testimonial-author">
+                  <div class="author-avatar" aria-hidden="true">ف</div>
+                  <div class="author-info">
+                    <p class="author-name">فاطمة علي</p>
+                    <p class="author-role">ولي أمر طالبة</p>
+                  </div>
+                  <div class="testimonial-stars" aria-label="تقييم ٥ نجوم" aria-hidden="true">★★★★★</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="testimonial-slide" role="article">
+              <div class="testimonial-card glass-card">
+                <div class="testimonial-quote-icon" aria-hidden="true">❝</div>
+                <p class="testimonial-text">التعليم عن بُعد مع الشيخ محمد كان أفضل من كثير من الحلقات الحضورية. منهجي
+                  ومتقن ويتابع كل طالب باهتمام كبير. أنصح به كل طالب للقرآن.</p>
+                <div class="testimonial-author">
+                  <div class="author-avatar" aria-hidden="true">م</div>
+                  <div class="author-info">
+                    <p class="author-name">محمد إبراهيم</p>
+                    <p class="author-role">طالب عن بُعد</p>
+                  </div>
+                  <div class="testimonial-stars" aria-label="تقييم ٥ نجوم" aria-hidden="true">★★★★★</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide" role="article">
+              <div class="testimonial-card glass-card">
+                <div class="testimonial-quote-icon" aria-hidden="true">❝</div>
+                <p class="testimonial-text">كنت أقرأ القرآن بأخطاء كثيرة ولم أكن أعلم. بفضل الله ثم الشيخ محمد، أصبحت
+                  أقرأ بتجويد صحيح. رحلة تعليمية ممتعة ومباركة.</p>
+                <div class="testimonial-author">
+                  <div class="author-avatar" aria-hidden="true">س</div>
+                  <div class="author-info">
+                    <p class="author-name">سارة عبد الله</p>
+                    <p class="author-role">طالبة تجويد</p>
+                  </div>
+                  <div class="testimonial-stars" aria-label="تقييم ٥ نجوم" aria-hidden="true">★★★★★</div>
+                </div>
+              </div>
+            </div> -->
+
+          </div>
+
+          <!-- Slider Controls -->
+          <div class="slider-controls" aria-label="تحكم في العرض">
+            <button class="slider-btn slider-prev" id="slider-prev" aria-label="العرض السابق">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="slider-dots" id="slider-dots" role="tablist" aria-label="انتقل إلى الشريحة"></div>
+            <button class="slider-btn slider-next" id="slider-next" aria-label="العرض التالي">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section id="contact" class="contact-section section" aria-labelledby="contact-title">
+      <div class="container">
+
+        <!-- Section Header -->
+        <div class="section-header" data-aos="fade-up">
+          <div class="section-ornament" aria-hidden="true">
+            <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+              <line x1="0" y1="20" x2="75" y2="20" stroke="#D9B24C" stroke-width="1" opacity="0.6" />
+              <polygon points="100,5 107,16 120,16 110,23 113,35 100,28 87,35 90,23 80,16 93,16" fill="#D9B24C" />
+              <line x1="125" y1="20" x2="200" y2="20" stroke="#D9B24C" stroke-width="1" opacity="0.6" />
+            </svg>
+          </div>
+          <h2 id="contact-title" class="section-title">تواصل معنا</h2>
+          <p class="section-subtitle">نحن هنا لمساعدتك في رحلتك مع القرآن الكريم</p>
+        </div>
+
+        <!-- Contact Grid -->
+        <div class="contact-grid">
+
+          <!-- Contact Info -->
+          <div class="contact-info-col" data-aos="fade-right">
+
+            <div class="contact-card glass-card">
+              <div class="contact-card-header">
+                <div class="contact-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 1.27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.91a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0121.73 16z"
+                      stroke="#D9B24C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h3 class="contact-card-title">اتصل بنا</h3>
+              </div>
+              <a href="tel:01027347928" class="contact-phone-link" dir="ltr" aria-label="اتصل بالشيخ محمد أبو بريكة">
+                01027347928
+              </a>
+              <p class="contact-card-note">متاح من السبت إلى الخميس</p>
+            </div>
+
+            <div class="contact-card glass-card">
+              <div class="contact-card-header">
+                <div class="contact-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                      fill="#D9B24C" />
+                  </svg>
+                </div>
+                <h3 class="contact-card-title">واتساب</h3>
+              </div>
+              <a href="https://wa.me/201027347928" class="contact-whatsapp-btn" target="_blank"
+                rel="noopener noreferrer" aria-label="تواصل عبر الواتساب">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                    fill="currentColor" />
+                </svg>
+                راسلنا على واتساب
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Map Placeholder -->
+          <div class="contact-map-col" data-aos="fade-left">
+            <div class="map-placeholder glass-card" role="img" aria-label="موقع الشيخ على الخريطة">
+              <div class="map-overlay">
+                <div class="map-pin" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#D9B24C" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="12" cy="10" r="3" stroke="#D9B24C" stroke-width="2" />
+                  </svg>
+                </div>
+                <p class="map-text">موقعنا على الخريطة</p>
+                <p class="map-subtext">جمهورية مصر العربية</p>
+                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="map-link-btn"
+                  aria-label="فتح الموقع على خرائط جوجل">
+                  فتح على خرائط جوجل
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-inner">
+
+        <!-- Footer Top -->
+        <div class="footer-top">
+          <!-- Footer Logo -->
+          <div class="footer-logo-block">
+            <div class="footer-star" aria-hidden="true">
+              <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="30,3 36,21 55,21 40,32 46,50 30,39 14,50 20,32 5,21 24,21" fill="#D9B24C" />
+              </svg>
+            </div>
+            <h2 class="footer-name">الشيخ محمد أبو بريكة</h2>
+            <p class="footer-tagline">مُحفظ ومعلم القرآن الكريم</p>
+          </div>
+
+          <!-- Footer Links -->
+          <nav class="footer-nav" aria-label="روابط التذييل">
+            <h4 class="footer-nav-title">روابط سريعة</h4>
+            <ul class="footer-nav-list">
+              <li><a href="#hero" class="footer-nav-link">الرئيسية</a></li>
+              <li><a href="#about" class="footer-nav-link">نبذة عن الشيخ</a></li>
+              <li><a href="#services" class="footer-nav-link">الخدمات</a></li>
+              <li><a href="#qualifications" class="footer-nav-link">المؤهلات</a></li>
+              <li><a href="#contact" class="footer-nav-link">التواصل</a></li>
+            </ul>
+          </nav>
+
+          <!-- Footer Contact -->
+          <div class="footer-contact-block">
+            <h4 class="footer-nav-title">تواصل معنا</h4>
+
+            <a href="tel:01027347928" class="footer-contact-item" dir="ltr" aria-label="اتصل بنا">
+            <div class="ci-icon"><i class="fas fa-phone"></i></div> 01027347928
+            </a>
+            <a href="https://wa.me/201027347928" class="footer-contact-item" target="_blank" rel="noopener noreferrer"
+              aria-label="تواصل عبر الواتساب">
+              واتساب مباشر
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer Dua -->
+        <div class="footer-dua" role="note">
+          <div class="footer-ornament-line" aria-hidden="true"></div>
+          <p class="footer-dua-text">
+            اللهم اجعل القرآن الكريم ربيع قلوبنا ونور صدورنا وجلاء أحزاننا
+          </p>
+          <div class="footer-ornament-line" aria-hidden="true"></div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <p class="footer-copy">
+            © ١٤٤٨ هـ — جميع الحقوق محفوظة لفضيلة الشيخ محمد أبو بريكة
+          </p> 
+          <br>
+          <p class="footer-copy">Made with  <i class="fas fa-heart accent">  </i> & <span class="c-keyword">  .NET  By-BEN.Ismail</span></p>
+
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- ==================== FLOATING WHATSAPP BUTTON ==================== -->
+    <a href="https://wa.me/201027347928" id="float-whatsapp" class="float-whatsapp" target="_blank"
+      rel="noopener noreferrer" aria-label="تواصل معنا على واتساب">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+          fill="currentColor" />
+      </svg>
+      <span class="float-whatsapp-pulse" aria-hidden="true"></span>
+      <span class="float-whatsapp-tooltip">تواصل عبر الواتساب</span>
+    </a>
+
+    <!-- Scroll To Top -->
+    <button id="scroll-top-btn" class="scroll-top-btn" aria-label="العودة للأعلى">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="18 15 12 9 6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </button>
+
+  </div><!-- end #main-site -->
+
+  <!-- Scripts -->
+  <script src="js/intro.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/counters.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>

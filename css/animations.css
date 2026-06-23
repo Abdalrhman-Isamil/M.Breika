@@ -1,0 +1,481 @@
+/* ================================================================
+   Sheikh Mohamed Abu Breika — Animations CSS
+   Scroll-triggered animations, transitions, micro-interactions
+   ================================================================ */
+
+/* ======================== AOS-STYLE ANIMATIONS ======================== */
+
+/* Base state — elements start hidden before JS triggers them */
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-duration: 0.85s;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: none !important;
+}
+
+/* Fade Up */
+[data-aos="fade-up"] {
+  transform: translateY(48px);
+}
+
+/* Fade Down */
+[data-aos="fade-down"] {
+  transform: translateY(-48px);
+}
+
+/* Fade Left (slide from right in RTL) */
+[data-aos="fade-left"] {
+  transform: translateX(48px);
+}
+
+/* Fade Right (slide from left in RTL) */
+[data-aos="fade-right"] {
+  transform: translateX(-48px);
+}
+
+/* Fade Scale */
+[data-aos="fade-scale"] {
+  transform: scale(0.88);
+}
+
+/* Delay utilities */
+[data-aos-delay="0"]   { transition-delay: 0ms; }
+[data-aos-delay="100"] { transition-delay: 100ms; }
+[data-aos-delay="200"] { transition-delay: 200ms; }
+[data-aos-delay="300"] { transition-delay: 300ms; }
+[data-aos-delay="400"] { transition-delay: 400ms; }
+[data-aos-delay="500"] { transition-delay: 500ms; }
+[data-aos-delay="600"] { transition-delay: 600ms; } */
+
+/* ======================== HERO ENTRANCE ======================== */
+.hero-hadith {
+  animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.hero-name-block {
+  animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+}
+
+.hero-buttons {
+  animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.75s both;
+}
+
+.scroll-indicator {
+  animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1s both;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================== SHIMMER EFFECT ======================== */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.06) 50%,
+    transparent 100%
+  );
+  animation: shimmerSlide 3s ease-in-out infinite;
+}
+
+@keyframes shimmerSlide {
+  0%   { right: -60%; }
+  100% { right: 120%; }
+}
+
+/* ======================== GLOW PULSE ======================== */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(217, 178, 76, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(217, 178, 76, 0.5), 0 0 80px rgba(217, 178, 76, 0.15);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* ======================== GOLD BORDER ANIMATION ======================== */
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(217, 178, 76, 0.2); }
+  50%       { border-color: rgba(217, 178, 76, 0.6); }
+}
+
+/* ======================== STAT CARD HOVER ======================== */
+.stat-card {
+  position: relative;
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 50% 0%, rgba(217,178,76,0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.stat-card:hover::after {
+  opacity: 1;
+}
+
+/* ======================== SERVICE CARD ICON SPIN ======================== */
+.service-card:hover .service-icon-wrap svg {
+  animation: iconWobble 0.6s ease;
+}
+
+@keyframes iconWobble {
+  0%   { transform: translate(-50%, -50%) rotate(0deg)   scale(1); }
+  25%  { transform: translate(-50%, -50%) rotate(-10deg) scale(1.1); }
+  50%  { transform: translate(-50%, -50%) rotate(8deg)   scale(1.15); }
+  75%  { transform: translate(-50%, -50%) rotate(-5deg)  scale(1.1); }
+  100% { transform: translate(-50%, -50%) rotate(0deg)   scale(1); }
+}
+
+/* ======================== TIMELINE HOVER ======================== */
+.timeline-dot {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.4);
+  box-shadow: 0 0 0 3px var(--gold), 0 0 20px rgba(217,178,76,0.6);
+}
+
+/* ======================== TESTIMONIAL CARD ENTRANCE ======================== */
+.testimonial-card {
+  animation: testimonialIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes testimonialIn {
+  from { opacity: 0; transform: scale(0.95) translateY(16px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+/* ======================== NAVBAR SCROLL ANIMATION ======================== */
+.navbar {
+  transform: translateY(0);
+  transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar.hidden {
+  transform: translateY(-100%);
+}
+
+/* ======================== BUTTON RIPPLE ======================== */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  transform: scale(0);
+  animation: rippleEffect 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ======================== FLOATING GOLD ORNAMENTS ======================== */
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-16px) rotate(8deg); }
+}
+
+@keyframes floatRotate {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ======================== PAGE TRANSITION ======================== */
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: var(--primary-darker);
+  clip-path: circle(0% at 50% 50%);
+  pointer-events: none;
+  transition: clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.page-transition-overlay.active {
+  clip-path: circle(150% at 50% 50%);
+}
+
+/* ======================== COUNTER NUMBER ======================== */
+.stat-number {
+  transition: color 0.3s ease;
+}
+
+/* ======================== GOLD LINE REVEAL ======================== */
+.gold-line-reveal {
+  position: relative;
+  display: inline-block;
+}
+
+.gold-line-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: var(--grad-gold);
+  border-radius: 1px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gold-line-reveal.active::after,
+.gold-line-reveal:hover::after {
+  width: 100%;
+  right: auto;
+  left: 0;
+}
+
+/* ======================== SECTION TITLE UNDERLINE ======================== */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 0;
+  height: 3px;
+  background: var(--grad-gold);
+  border-radius: 2px;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-header.in-view .section-title::after {
+  width: 60%;
+}
+
+/* ======================== ABOUT AVATAR RING ======================== */
+@keyframes ringExpand {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.about-avatar-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(217,178,76,0.3);
+  animation: ringExpand 2.5s ease-out infinite;
+}
+
+.about-avatar-ring-2 {
+  animation-delay: 1.25s;
+}
+
+/* ======================== SCROLL PROGRESS BAR ======================== */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  z-index: 9999;
+  background: transparent;
+}
+
+#scroll-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to left, var(--gold-light), var(--gold));
+  transition: width 0.1s linear;
+}
+
+/* ======================== INTRO WORD-BY-WORD FADE ======================== */
+.intro-verse .word {
+  display: inline;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.intro-verse .word.shown {
+  opacity: 1;
+}
+
+/* ======================== GLASSMORPHISM HOVER LIFT ======================== */
+.glass-card {
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease;
+}
+
+/* ======================== ACTIVE NAV INDICATOR ======================== */
+.nav-link {
+  position: relative;
+}
+
+@keyframes navPop {
+  0%   { transform: scaleX(0); }
+  60%  { transform: scaleX(1.15); }
+  100% { transform: scaleX(1); }
+}
+
+.nav-link.active::after {
+  animation: navPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ======================== FLOATING WHATSAPP ENTRANCE ======================== */
+.float-whatsapp {
+  animation: floatWAEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2s both;
+}
+
+@keyframes floatWAEntrance {
+  from { transform: scale(0) translateY(20px); opacity: 0; }
+  to   { transform: scale(1) translateY(0);    opacity: 1; }
+}
+
+/* ======================== DECORATIVE ISLAMIC PATTERN SPIN ======================== */
+@keyframes patternDrift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 500px 500px; }
+}
+
+.hero-pattern {
+  animation: patternDrift 60s linear infinite;
+}
+
+/* ======================== LIGHT BEAM SWEEP ======================== */
+@keyframes lightBeam {
+  0%   { left: -100%; opacity: 0; }
+  10%  { opacity: 0.3; }
+  90%  { opacity: 0.3; }
+  100% { left: 200%; opacity: 0; }
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(217,178,76,0.04) 50%,
+    transparent 60%
+  );
+  animation: lightBeam 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ======================== STAR TWINKLE ======================== */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.2); }
+}
+
+/* ======================== CONTACT CARD BORDER FLOW ======================== */
+@keyframes borderFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ======================== FOOTER DUA TEXT GLOW ======================== */
+.footer-dua-text {
+  animation: duaGlow 4s ease-in-out infinite;
+}
+
+@keyframes duaGlow {
+  0%, 100% { text-shadow: none; }
+  50%       { text-shadow: 0 0 20px rgba(217,178,76,0.3); }
+}
+
+/* ======================== BADGE SHINE ======================== */
+.service-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+  animation: badgeShine 2.5s ease-in-out infinite;
+}
+
+@keyframes badgeShine {
+  0%   { right: -60%; }
+  100% { right: 120%; }
+}
+
+/* ======================== HERO PARALLAX MOUSE EFFECT ======================== */
+.hero-pattern {
+  will-change: transform;
+}
+
+/* ======================== SCROLL TOP BUTTON ======================== */
+.scroll-top-btn {
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s ease;
+}
+
+/* ======================== TIMELINE ENTRANCE ======================== */
+.timeline-item:nth-child(even) [data-aos="fade-left"] {
+  transform: translateX(48px);
+}
+
+.timeline-item:nth-child(odd) [data-aos="fade-right"] {
+  transform: translateX(-48px);
+}
